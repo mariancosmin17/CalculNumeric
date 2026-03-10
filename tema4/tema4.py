@@ -65,6 +65,7 @@ def gauss_seidel_sparse(d0, d1, d2, b, eps, kmax=KMAX):
             x[i] = (b[i] - s) / d0[i]
 
         delta = inf_norm_diff(x, x_old)
+        print(f"Iteratia {k}, delta = {delta}")
 
         if delta < eps:
             return True, x, k, delta, p, q
@@ -144,14 +145,13 @@ def solve_system_from_files(d0_file, d1_file, d2_file, b_file, eps):
     success, xgs, iterations, delta, p, q = gauss_seidel_sparse(d0, d1, d2, b, eps)
 
     if not success:
-        print("4) Metoda Gauss-Seidel NU a convergent.")
+        print("4) Metoda Gauss-Seidel NU e convergenta.")
         print(f"   Iterații efectuate: {iterations}")
         print(f"   Ultimul delta: {delta}")
         return
 
-    print("4) Metoda Gauss-Seidel a convergent.")
+    print("4) Metoda Gauss-Seidel e convergenta.")
     print(f"   Număr iterații: {iterations}")
-    print(f"   Ultimul delta: {delta}")
 
     print_vector("xGS", xgs, max_items=10)
 
